@@ -30,12 +30,20 @@ class TodoController {
   }
 
   void makeDone(int index) {
-    print(_list[index].isDone);
     _list[index].isDone = !_list[index].isDone;
-    print(_list[index].isDone);
   }
 
   void delete(int index) {
     _list.removeAt(index);
+  }
+
+  int get markedItemsCount {
+    int count = 0;
+    for (var item in list) {
+      if (item.isDone) {
+        count++;
+      }
+    }
+    return count;
   }
 }

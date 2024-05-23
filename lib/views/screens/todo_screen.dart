@@ -41,11 +41,27 @@ class _TodoScreenState extends State<TodoScreen> {
     setState(() {});
   }
 
+  int markedItemsCount() {
+    return todoController.markedItemsCount;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Todo"),
+        title: Row(
+          children: [
+            const Text("Todo"),
+            const SizedBox(
+              width: 10,
+            ),
+            Text("Done: ${markedItemsCount()}"),
+            const SizedBox(
+              width: 10,
+            ),
+            Text("Undone: ${todoController.list.length - markedItemsCount()}")
+          ],
+        ),
       ),
       body: ListView.builder(
         itemCount: todoController.list.length,
